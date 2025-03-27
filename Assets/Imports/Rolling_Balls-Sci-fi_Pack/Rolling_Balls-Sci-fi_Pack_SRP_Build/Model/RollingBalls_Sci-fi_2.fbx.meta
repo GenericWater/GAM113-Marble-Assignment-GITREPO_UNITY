@@ -1,9 +1,46 @@
 fileFormatVersion: 2
 guid: 35f9f314354d86648b42c99b7e2fa13b
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297168
+  packageName: Rolling Balls Sci-fi Pack Free
+  packageVersion: 1.0
+  assetPath: Assets/Rolling_Balls-Sci-fi_Pack/Rolling_Balls-Sci-fi_Pack_SRP_Build/Model/RollingBalls_Sci-fi_2.fbx
+  uploadId: 695281
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CyberxhfzxBalls__49_v2__2
+    second: {fileID: 2100000, guid: 1bebb4c1b919579478e86911853166d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CyberxhfzxBalls__49_v2__3
+    second: {fileID: 2100000, guid: df5f6cd25c889af469f736a0209b61dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CyberxhfzxBalls__49_v2__4
+    second: {fileID: 2100000, guid: fbb03b21faee7044b92337ba28a1d0a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _xCybxhfzx__659
+    second: {fileID: 2100000, guid: 1b669c931da890b4b8b65348db7c576c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _xCybxhfzx__845
+    second: {fileID: 2100000, guid: ea64f5312c5d6aa458f3e4dabe8f6593, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _xCybxhfzx__860
+    second: {fileID: 2100000, guid: 657261e9fd48d0d43943a5f8b86870d9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -16,8 +53,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -107,10 +142,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 297168
-  packageName: Rolling Balls Sci-fi Pack Free
-  packageVersion: 1.0
-  assetPath: Assets/Rolling_Balls-Sci-fi_Pack/Rolling_Balls-Sci-fi_Pack_SRP_Build/Model/RollingBalls_Sci-fi_2.fbx
-  uploadId: 695281
