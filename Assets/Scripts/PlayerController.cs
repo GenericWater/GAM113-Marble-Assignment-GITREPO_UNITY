@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText; // holds a refrence to UI text component and the countText game componenet
     public GameObject winTextObject; // win text for game
 
+    public GameObject killPlayer; // controls the checkpoints
+
+    public float gamePickups = 1;
+
     private Rigidbody rb; // refrence to rigid body to access ONLY in this script
     private float movementX;
     private float movementY;
@@ -20,6 +24,25 @@ public class PlayerController : MonoBehaviour
     private int count; // stores value of pickups / num of pickups
 
     private bool isGrounded; // checks to see if player is on ground
+
+    private KillPlayer killPlayerScript; // call to KillPlayer Script to use in this script for Respawn
+
+    // Added "Mario's" Coyote Time & Jump Buffering to fix jump lag during input
+    private float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
+
+    private float jumpBufferTime = 0.1f;
+    private float jumpBufferCounter;
+
+    // FIX unlimited air jumps!
+    private bool hasJumped = false;
+    // added a check to only reset hasJumped when the player was not grounded in the previous frame and is grounded now.
+    private bool wasGrounded;
+
+    private float jumpCooldown = 0.25f; // MINIMUM time between jumps
+    private float jumpCooldownCounter = 0f; // Timer for jumping
+
+    public Vector3 groundCheckOffset = new Vector3(0f, -0.6f, 0f); // tweak Y for your player’s size
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +53,10 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
+
+        killPlayerScript = killPlayer.GetComponent<KillPlayer>();
+
+        groundCheck.SetParent(null); // groundcheck is attached to prefab, but spins with player -> made parent NULL to stop spinning
     }
 
     void OnMove(InputValue movementValue)
@@ -44,18 +71,27 @@ public class PlayerController : MonoBehaviour
     }
 
     // NEW jump function
-    void OnJump()
+
+    public void OnJump()
     {
-        if (isGrounded)
+        Debug.Log("Jump pressed");
+        jumpBufferCounter = jumpBufferTime; // store jump input briefly
+
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && !hasJumped && jumpCooldownCounter <= 0f)
         {
+            Debug.Log("JUMP TRIGGERED");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpBufferCounter = 0f;
+            hasJumped = true;
+            jumpCooldownCounter = jumpCooldown; // Start cooldown
         }
+
     }
 
-    void SetCountText()
+    public void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count >= 13) // if you change number of collectibles MUST UPDATE
+        if(count >= gamePickups) // changed to check public game number of pickups - set by editors in inspector not game designers.
         {
             winTextObject.SetActive(true);
         }
@@ -63,23 +99,61 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // NEW Ground Check
+        jumpCooldownCounter -= Time.fixedDeltaTime;
+
+        groundCheck.position = transform.position + groundCheckOffset; //ensures groundCheck stays directly under the player, without spinning, every frame
+
+        // Ground Check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        // Create a 3D movement vector using the X and Y inputs.
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        // UPDATE COYOTE TIME
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+            hasJumped = false; // Reset jump lock when player lands
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.fixedDeltaTime;
+        }
+        // UPDATE JUMP BUFFER
+        jumpBufferCounter -= Time.fixedDeltaTime;
 
-        // Apply force to the Rigidbody to move the player.
-        rb.AddForce(movement * speed);
+        // PERFORM JUMP IF COUNTETRS ARE VALID
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && !hasJumped)
+        {
+            Debug.Log("JUMP TRIGGERED");
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpBufferCounter = 0f; // clears the jump input after player jumps
+            hasJumped = true;
+        }
+
+
+        Vector3 movement = new Vector3(movementX, 0f, movementY).normalized;
+
+        float controlMultiplier = isGrounded ? 1f : 0.4f; // Better air control
+
+        // Add horizontal force
+        rb.AddForce(movement * speed * controlMultiplier, ForceMode.Force);
+
+        // UPDATE the previous grounded state
+        wasGrounded = isGrounded;
+
+        // Heavier falling for snappy landing (does not use velocity!)
+        //if (!isGrounded)
+        //{
+            //rb.AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
+        //}
+
     }
 
     //detects contact between player and gameobject without causing a physical collision
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // checks for collison with Pickup items
     {
         if(other.gameObject.CompareTag("PickUp")) // checks tag of gameObject
         {
             other.gameObject.SetActive(false); // disables gameObject on collision - sets pickups to false
-            count = count + 1; // adds one to total count of pickups 
+            count++; // adds one to total count of pickups | count++; works the same
 
             SetCountText(); // updates UI
         }

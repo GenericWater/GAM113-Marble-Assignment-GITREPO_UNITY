@@ -1,9 +1,76 @@
 fileFormatVersion: 2
 guid: 3955efe50970d694dae5ee3bd9b5a87e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297168
+  packageName: Rolling Balls Sci-fi Pack Free
+  packageVersion: 1.0
+  assetPath: Assets/Rolling_Balls-Sci-fi_Pack/Rolling_Balls-Sci-fi_Pack_SRP_Build/Model/RollingBalls_Sci-fi_3.fbx
+  uploadId: 695281
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material
+    second: {fileID: 2100000, guid: c5460ee489cbf114fba5a57517109629, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_1
+    second: {fileID: 2100000, guid: bb1272c8c86c2c54ca4fd8c570e848d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_10
+    second: {fileID: 2100000, guid: 66fb9b1fbb065df4a9412aa6affb3444, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_11
+    second: {fileID: 2100000, guid: 7f3da0c5cc685c048a423c3f0d787496, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_2
+    second: {fileID: 2100000, guid: c4f7238f724fb2f42bdfaf1b641f4a21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_3
+    second: {fileID: 2100000, guid: 36912b6f6a4b88a468e7bbd6d89f1489, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_4
+    second: {fileID: 2100000, guid: c2ea86c04e84efd4a8f4c352e1421779, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_5
+    second: {fileID: 2100000, guid: bb3e45c40e2f88f4186b4b1e84142512, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_6
+    second: {fileID: 2100000, guid: b88a1c3dd585feb418221a8017940a7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_7
+    second: {fileID: 2100000, guid: adf2e2477b583d14b8fcfe95cf30b9c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_8
+    second: {fileID: 2100000, guid: 4ad8601ff1538324493bb9873d53e78b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: New_Material_9
+    second: {fileID: 2100000, guid: 2fd5a07343c51834e9ce92888f65cafd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -16,8 +83,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -107,10 +172,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 297168
-  packageName: Rolling Balls Sci-fi Pack Free
-  packageVersion: 1.0
-  assetPath: Assets/Rolling_Balls-Sci-fi_Pack/Rolling_Balls-Sci-fi_Pack_SRP_Build/Model/RollingBalls_Sci-fi_3.fbx
-  uploadId: 695281
